@@ -28,7 +28,7 @@ server.use(errorHandlers.server)
 //This will prevent the code below to run in test environment
 
 if((process.env.MONGO_DEV_URL) || (process.env.MONGO_PROD_URL)){
-    connectToDB(server)
+    connectToDB()
     server.listen(process.env.PORT, async () => {
         console.log("🚀 Server is running on port ", process.env.PORT)
     })

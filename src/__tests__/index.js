@@ -4,8 +4,6 @@ import dotenv from "dotenv"
 import mongoose from "mongoose"
 
 dotenv.config()
-
-//supertest will mimic requests
 const request = supertest(server)
 
 describe("Testing the testing environment", () => {
