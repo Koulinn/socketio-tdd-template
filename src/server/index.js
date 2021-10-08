@@ -3,6 +3,7 @@ import lib from "../lib/index.js"
 import cors from "cors"
 import connectToDB from '../DB/conn/index.js'
 import userRouters from '../services/user/index.js'
+import { connectSocket } from "../socket/index.js"
 
 
 const {corsConfig, errorHandlers} = lib
@@ -29,12 +30,9 @@ server.use(errorHandlers.server)
 
 if((process.env.MONGO_DEV_URL) || (process.env.MONGO_PROD_URL)){
     connectToDB()
-    server.listen(process.env.PORT, async () => {
-        console.log("🚀 Server is running on port ", process.env.PORT)
-    })
+    connectSocket(server)
     server.on("error", (error) =>
         console.log("🚀 Server is crashed due to ", error)
     )
 } 
-
 
