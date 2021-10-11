@@ -6,9 +6,9 @@ const { Schema, model } = mongoose
 const userSchema = new Schema(
     {
         name: { type: String, required: true },
-        surname: { type: String, required: true },
         email: { type: String, unique: true, required: true },
         password: { type: String },
+        bio: { type: String },
         // refreshToken: { type: String },    //optional
         avatar: {
           type: String,
@@ -73,21 +73,6 @@ userSchema.methods.toJSON = function () {
 
   return userObject
 }
-
-userSchema.statics.checkCredentials = async function (email, password) {
-  const user = await this.findOne({ email }) 
-
-  if (user) {
-   
-    const isMatch = await bcrypt.compare(password, user.password)
-
-    if (isMatch) return user
-    else return null
-  } else {
-    return null
-  }
-}
-
 
 
 

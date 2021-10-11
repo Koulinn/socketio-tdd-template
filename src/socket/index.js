@@ -20,7 +20,12 @@ export const connectSocket = (server) => {
         io.on('connection', socket => {
             socket.on("example", socketHandlers.example)
         
-        
+        // all cations
+        // all cations join room (to send to that room )
+        // to(will send to specific room)
+        // socket.on (will receive an emit from the Front-end)
+        // socket.emit (will send a command to the Front-end)
+        // socket.broadcast (will send a command to everyone who is connected)
             socket.on("disconnect", () => {
                 socket.broadcast.emit("UpdateTotalUsers")
             })
