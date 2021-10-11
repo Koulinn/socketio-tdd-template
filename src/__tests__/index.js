@@ -2,6 +2,7 @@ import supertest from "supertest"
 import {server} from "../server/index.js"
 import dotenv from "dotenv"
 import mongoose from "mongoose"
+import tests from './tests-handlers.js'
 
 dotenv.config()
 const request = supertest(server)
@@ -23,19 +24,9 @@ describe("Testing the server", () => {
     
   //Test example
     
-    it("Description of what iss testing", async () => {
-        const validUser={
-            name: 'JestUser',
-            surname: "JestSurname",
-            email: "JestEmail@test.com",
-            password: '123456'
-        }
-        const response = await request.post('/user/register').send(validUser)
-        
-        expect(response.status).toBe(201)
-        expect(response.body._id).toBeDefined()
-        
-    })
+    it("Description of what iss testing", tests.userCreation)
+
+    
     
     afterAll(done => {
         mongoose.connection.dropDatabase().then(() => {
